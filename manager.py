@@ -5,23 +5,12 @@ import pyperclip
 import sys, os
 
 def invalid_usage(err):
-    if err == 1:
-        raise Exception("""Invalid usage
+    raise Exception("""Invalid usage
         
 Syntax: python3 manager.py <command> <args>
 
 Commands:
-    savePassword <name> <comment>
-    readPassword <name>
-    delPassword <name>
-    list""")
-    else:
-        raise Exception("""Invalid usage
-        
-Syntax: python3 manager.py <command> <args>
-
-Commands:
-    savePassword <name> <comment>
+    savePassword <name>
     readPassword <name>
     delPassword <name>
     list""")
