@@ -10,9 +10,9 @@ def invalid_usage(err):
 Syntax: python3 manager.py <command> <args>
 
 Commands:
-    savePassword <name>
-    readPassword <name>
-    delPassword <name>
+    save <name>
+    read <name>
+    del <name>
     list""")
 
 def read_list():
@@ -36,14 +36,14 @@ def main():
         return invalid_usage(0)
 
     command = sys.argv[1]
-    if command in ['savePassword', 'delPassword'] and len(sys.argv) < 3:
+    if command in ['save', 'del'] and len(sys.argv) < 3:
         return invalid_usage(1)
 
-    if command == 'savePassword':
+    if command == 'save':
         comment = input('Enter comment for this password: ')
         update_list([sys.argv[2] + (f' – {comment}' if comment else '')])
         print('Successfully saved to .ps_list')
-    elif command == 'readPassword':
+    elif command == 'read':
         message = getpass('Master-password: ')
         hash = md5(
             message.encode('utf8')
@@ -53,7 +53,7 @@ def main():
         ).decode().replace('=', '')
         pyperclip.copy(password)
         print('Password copied to clipboard')
-    elif command == 'delPassword':
+    elif command == 'del':
         write_list([e for e in read_list() if e.find(sys.argv[2]) != 0])
         print('Password removed from the store')
     elif command == 'list':
