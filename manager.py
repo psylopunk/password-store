@@ -11,7 +11,7 @@ Syntax: python3 manager.py <command> <args>
 
 Commands:
     save <name>
-    read <name>
+    read
     del <name>
     list""")
 
@@ -60,7 +60,7 @@ def main():
         print('Known passwords:')
         print('\n'.join(read_list()))
     else:
-        raise Exception('Unknown command')
+        return invalid_usage(1)
 
 
 if __name__ == '__main__':
